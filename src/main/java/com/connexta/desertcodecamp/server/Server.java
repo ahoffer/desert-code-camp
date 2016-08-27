@@ -19,8 +19,10 @@
 
 package com.connexta.desertcodecamp.server;
 
+import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider;
+import org.apache.cxf.service.factory.ServiceConstructionException;
 
 public class Server {
 
@@ -30,16 +32,26 @@ public class Server {
         sf.setResourceProvider(CustomerService.class,
                 new SingletonResourceProvider(new CustomerService()));
         sf.setAddress("http://localhost:9000/");
+        sf.setProvider(new JacksonJsonProvider());
 
-        sf.create();
+        try {
+            sf.create();
+        } catch (ServiceConstructionException e) {
+            System.err.println("\n" +
+                    "░█▀▀ ░█▀█ ░█ ░█▀▀ ░░█▀▀ ░█▀█ ░█ ░█\n" +
+                    "░█▀▀ ░█▀▀ ░█ ░█ ░░░░█▀▀ ░█▀█ ░█ ░█\n" +
+                    "░▀▀▀ ░▀ ░░░▀ ░▀▀▀ ░░▀ ░░░▀░▀ ░▀ ░▀▀▀");
+            System.exit(1);
+        }
+
+        System.out.println("Server ready...");
     }
 
     public static void main(String args[]) throws Exception {
         new Server();
-        System.out.println("Server ready...");
 
-        Thread.sleep(5 * 6000 * 1000);
-        System.out.println("Server exiting");
-        System.exit(0);
+//        Thread.sleep(5 * 6000 * 1000);
+//        System.out.println("Server exiting");
+//        System.exit(0);
     }
 }

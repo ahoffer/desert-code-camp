@@ -19,12 +19,15 @@
 package com.connexta.desertcodecamp.server;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.HashMap;
 import java.util.Map;
 
 @Path("/customerservice/")
-@Produces("text/xml")
+//@Produces({"application/xml", "application/json"})
+//@Produces(MediaType.APPLICATION_JSON)
+@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 public class CustomerService {
     long currentId = 123;
     Map<Long, Customer> customers = new HashMap<>();

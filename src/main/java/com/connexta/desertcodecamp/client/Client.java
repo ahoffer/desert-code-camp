@@ -19,18 +19,15 @@
 
 package com.connexta.desertcodecamp.client;
 
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.methods.FileRequestEntity;
-import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.commons.httpclient.methods.PutMethod;
-import org.apache.commons.httpclient.methods.RequestEntity;
-import org.apache.cxf.helpers.IOUtils;
-import org.apache.cxf.io.CachedOutputStream;
-import org.apache.cxf.resource.URIResolver;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpHeaders;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 
-import java.io.File;
-import java.io.InputStream;
-import java.net.URL;
+import javax.ws.rs.core.MediaType;
 
 public final class Client {
 
@@ -38,15 +35,24 @@ public final class Client {
     }
 
     public static void main(String args[]) throws Exception {
-        // Sent HTTP GET request to query all customer info
-        /*
-         * URL url = new URL("http://localhost:9000/customers");
-         * System.out.println("Invoking server through HTTP GET to query all
-         * customer info"); InputStream in = url.openStream(); StreamSource
-         * source = new StreamSource(in); printSource(source);
-         */
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+        HttpGet httpGet = new HttpGet("http://localhost:9000/customerservice/customers/123");
+        httpGet.addHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_XML);
+//        httpGet.addHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON);
+        CloseableHttpResponse response1 = httpclient.execute(httpGet);
+        try {
+            System.out.println(response1.getStatusLine());
+            HttpEntity entity1 = response1.getEntity();
+            System.out.println(EntityUtils.toString(entity1));
+            EntityUtils.consume(entity1);
 
-        // Sent HTTP GET request to query customer info
+        } finally {
+            response1.close();
+        }
+
+
+/*
+   // Sent HTTP GET request to query customer info
         System.out.println("Sent HTTP GET request to query customer info");
         URL url = new URL("http://localhost:9000/customerservice/customers/123");
         InputStream in = url.openStream();
@@ -59,7 +65,10 @@ public final class Client {
         in = url.openStream();
         System.out.println(getStringFromInputStream(in));
 
+*/
+
         // Sent HTTP PUT request to update customer info
+/*
         System.out.println("\n");
         System.out.println("Sent HTTP PUT request to update customer info");
         Client client = new Client();
@@ -117,4 +126,6 @@ public final class Client {
         return bos.getOut().toString();
     }
 
+*/
+    }
 }
