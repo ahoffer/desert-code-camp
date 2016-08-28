@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.connexta.desertcodecamp.server;
+package com.connexta.desertcodecamp;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -26,7 +26,6 @@ import java.util.Map;
 
 @Path("/customerservice/")
 //@Produces({"application/xml", "application/json"})
-//@Produces(MediaType.APPLICATION_JSON)
 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 public class CustomerService {
     long currentId = 123;

@@ -17,7 +17,7 @@
 
 
 
-RELATED LIBARIES
+RELATED LIBRARIES
 HttCommons (Apache Java library for HTTP related functionality. HTTPClient to send requests.)
 javax.ws.rs (Base Java:  A collection of built-in priority constants for the JAX-RS components
 Jackson (Java library to serialize Java objects to JSON and vice versa. )
