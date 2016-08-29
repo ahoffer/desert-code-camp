@@ -12,7 +12,7 @@
 hs_err_pid*
 
 # Intellij files
-.idea/*
+.idea
 *.iml
 
 # Maven
