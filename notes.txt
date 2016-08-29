@@ -27,3 +27,11 @@ PROGRESSION
 1. Get XML working
 2. Replace strings with string constants from libraries (HTTPHeaders, MediaTypes)
 3. Get JSON working (explains mappers/serializers/provider terminology). XML/JSON/... <-> Java objects
+4. Get Uber JAR working
+5. Show AWS EC2 micro instance.
+6. Copy with SCP (can I make it kill the old server and start the new one?)
+
+AMAZON EC2 INSTANCE
+Pubblic DNS - ec2-54-211-71-65.compute-1.amazonaws.com
+Public IP - 54.211.71.65
+User name - ec2-user
