@@ -1,21 +1,10 @@
+Customer
+Order
+    put/post/get/delete
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+XML or JSON.
+Enable HTTPS.
+Enable OAuth 2.
 
 RELATED LIBRARIES
 HttCommons (Apache Java library for HTTP related functionality. HTTPClient to send requests.)
@@ -27,11 +16,19 @@ PROGRESSION
 1. Get XML working
 2. Replace strings with string constants from libraries (HTTPHeaders, MediaTypes)
 3. Get JSON working (explains mappers/serializers/provider terminology). XML/JSON/... <-> Java objects
-4. Get Uber JAR working
+4. Get Uber JAR working (edit POM file).
 5. Show AWS EC2 micro instance.
 6. Copy with SCP (can I make it kill the old server and start the new one?)
+7. Open port 80 on ec2 (or port 9000 or whatever)
 
-AMAZON EC2 INSTANCE
-Pubblic DNS - ec2-54-211-71-65.compute-1.amazonaws.com
-Public IP - 54.211.71.65
-User name - ec2-user
+
+VULTR SERVER INSTANCE
+IP: 104.238.147.53
+USER: root
+
+scp -i ~/.ssh/id_desertcodecamp ~/repos/desert-code-camp/server/target/server-1.0-SNAPSHOT.jar root@104.238.147.53:/root/server
+
+ssh -i ~/.ssh/id_desertcodecamp root@104.238.147.53
+
+curl -X GET http://localhost:9000/customerservice/customer/123/
+curl -X GET http://104.238.147.53:9000/customer/123/

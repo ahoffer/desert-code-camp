@@ -18,18 +18,27 @@
  */
 package com.connexta.desertcodecamp;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.HashMap;
 import java.util.Map;
 
-@Path("/customerservice/")
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+//@Path("/customerservice/")
 //@Produces({"application/xml", "application/json"})
 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 public class CustomerService {
     long currentId = 123;
+
     Map<Long, Customer> customers = new HashMap<>();
+
     Map<Long, Order> orders = new HashMap<>();
 
     public CustomerService() {
@@ -37,7 +46,7 @@ public class CustomerService {
     }
 
     @GET
-    @Path("/customers/{id}/")
+    @Path("/customer/{id}/")
     public Customer getCustomer(@PathParam("id") String id) {
         System.out.println("----invoking getCustomer, Customer id is: " + id);
         long idNumber = Long.parseLong(id);
@@ -53,27 +62,30 @@ public class CustomerService {
         Response r;
         if (c != null) {
             customers.put(customer.getId(), customer);
-            r = Response.ok().build();
+            r = Response.ok()
+                    .build();
         } else {
-            r = Response.notModified().build();
+            r = Response.notModified()
+                    .build();
         }
 
         return r;
     }
 
     @POST
-    @Path("/customers/")
+    @Path("/customer/")
     public Response addCustomer(Customer customer) {
         System.out.println("----invoking addCustomer, Customer name is: " + customer.getName());
         customer.setId(++currentId);
 
         customers.put(customer.getId(), customer);
 
-        return Response.ok(customer).build();
+        return Response.ok(customer)
+                .build();
     }
 
     @DELETE
-    @Path("/customers/{id}/")
+    @Path("/customer/{id}/")
     public Response deleteCustomer(@PathParam("id") String id) {
         System.out.println("----invoking deleteCustomer, Customer id is: " + id);
         long idNumber = Long.parseLong(id);
@@ -81,16 +93,18 @@ public class CustomerService {
 
         Response r;
         if (c != null) {
-            r = Response.ok().build();
+            r = Response.ok()
+                    .build();
             customers.remove(idNumber);
         } else {
-            r = Response.notModified().build();
+            r = Response.notModified()
+                    .build();
         }
 
         return r;
     }
 
-    @Path("/orders/{orderId}/")
+    @Path("/order/{orderId}/")
     public Order getOrder(@PathParam("orderId") String orderId) {
         System.out.println("----invoking getOrder, Order id is: " + orderId);
         long idNumber = Long.parseLong(orderId);

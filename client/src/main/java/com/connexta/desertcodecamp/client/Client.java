@@ -1,5 +1,7 @@
 package com.connexta.desertcodecamp.client;
 
+import javax.ws.rs.core.MediaType;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -8,10 +10,9 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
 public final class Client {
+
+    public static String AWS_ENDPOINT = "http://54.81.219.75:9000/customerservice/customers/123";
 
     private Client() {
     }
@@ -19,9 +20,9 @@ public final class Client {
     public static void main(String args[]) throws Exception {
 
         CloseableHttpClient httpclient = HttpClients.createDefault();
-        HttpGet httpGet = new HttpGet("http://localhost:9000/customerservice/customers/123");
+        HttpGet httpGet = new HttpGet(AWS_ENDPOINT);
         httpGet.addHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_XML);
-//        httpGet.addHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON);
+        //        httpGet.addHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON);
         try (CloseableHttpResponse response1 = httpclient.execute(httpGet)) {
             System.out.println(response1.getStatusLine());
             HttpEntity entity1 = response1.getEntity();
