@@ -1,3 +1,22 @@
+In 2008, a new specification called JAX-RS was defined to simplify RESTful service implementation.
+JAX-RS is a framework that focuses on applying Java annotations to plain Java objects.
+It has annotations to bind specific URI patterns and HTTP operations to individual
+methods of your Java class. It has parameter injection annotations so that you can easily
+pull in information from the HTTP request. It has message body readers and writers
+that allow you to decouple data format marshalling and unmarshalling from your Java
+data objects. It has exception mappers that can map an application-thrown exception
+to an HTTP response code and message. Finally, it has some nice facilities for HTTP
+content negotiation.
+
+In an Enterprise Java application, the  Customer class would usually be a Java Persistence
+(JPA) Entity bean and would be used to interact with a relational database. It could
+also be annotated with JAXB annotations that allow you to map a Java class directly to
+XML. To keep our example simple,  Customer will be just a plain Java object and stored
+in memory. In Chapter 6, I’ll show how you can use JAXB with JAX-RS to make trans-
+lating between your customer’s data format (XML) and your  Customer objects easier.
+
+
+
 Customer
 Order
     put/post/get/delete
