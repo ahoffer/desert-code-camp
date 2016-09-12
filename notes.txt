@@ -15,7 +15,76 @@ XML. To keep our example simple,  Customer will be just a plain Java object and 
 in memory. In Chapter 6, I’ll show how you can use JAXB with JAX-RS to make trans-
 lating between your customer’s data format (XML) and your  Customer objects easier.
 
+ A JAX-RS service is a Java class that uses JAX-RS annotations to
+bind and map specific incoming HTTP requests to Java methods that can service these
+requests.
 
+JAX-RS can integrate with popular component models like EJB, Web
+Beans, JBoss Seam, and Spring, it does define its own lightweight model.
+
+In vanilla JAX-RS, services can either be singletons or per-request objects. A singleton
+means that one and only one Java object services HTTP requests. Per-request means
+that a Java object is created to process each incoming request and is thrown away at
+the end of that request. Per-request also implies statelessness, as no service state is held
+between requests.
+
+To bind HTTP POST requests to the  createCustomer() method, we annotate it
+with the  @javax.ws.rs.POST annotation. The  @Path annotation we put on the
+CustomerResource class, combined with this  @POST annotation, binds all POST requests
+going to the relative URI  /customers to the Java method  createCustomer() .
+
+The  @javax.ws.rs.Consumes annotation applied to  createCustomer() specifies which
+media type the method is expecting in the message body of the HTTP input request. If
+the client POSTs a media type other than XML, an error code is sent back to the client.
+
+We use an additional  @Path annotation on  getCustomer() to specify which URI will be
+bound to the method. The value of this annotation is concatenated with the value of
+the  @Path annotation we applied to the  CustomerResource class. This concatenation
+defines a URI matching pattern of  /customers/{id} .  {id} matches a URI path segment.
+A path segment is any sequence of characters that is not the “/” character.
+
+The  @javax.ws.rs.PathParam annotation tells the JAX-RS provider that
+you want to inject a piece of the incoming URI into the parameter.
+ In JAX-RS,
+any non-JAX-RS-annotated parameter is considered to be a representation of the HTTP
+input request’s message body.
+
+Use annotations to control:
+-When a method is invoked
+-What method should return
+-What is passed into the method
+
+
+
+
+
+ In JAX-RS, you are also allowed to define a Java interface that
+contains all your JAX-RS annotation metadata instead of applying all your annotations
+to your implementation class
+
+@Consumes("application/xml;charset=utf-8")
+
+@Path can also be applied to your Java method. If you do this, the URI matching pattern
+is a concatenation of the class’s  @Path expression and that of the method’s.
+
+@javax.ws.rs.PathParam
+This annotation allows you to extract values from URI template parameters.
+@javax.ws.rs.MatrixParam
+This annotation allows you to extract values from a URI’s matrix parameters.
+@javax.ws.rs.QueryParam
+This annotation allows you to extract values from a URI’s query parameters.
+@javax.ws.rs.FormParam
+This annotation allows you to extract values from posted form data.
+@javax.ws.rs.HeaderParam
+This annotation allows you to extract values from HTTP request headers.
+@javax.ws.rs.CookieParam
+This annotation allows you to extract values from HTTP cookies set by the client.
+@javax.ws.rs.core.Context
+This class is the all-purpose injection annotation. It allows you to inject various
+helper and informational objects that are provided by the JAX-RS API.
+
+StreamingOutput
+Response
 
 Customer
 Order
