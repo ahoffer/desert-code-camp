@@ -54,10 +54,6 @@ Use annotations to control:
 -What method should return
 -What is passed into the method
 
-
-
-
-
  In JAX-RS, you are also allowed to define a Java interface that
 contains all your JAX-RS annotation metadata instead of applying all your annotations
 to your implementation class
@@ -82,6 +78,63 @@ This annotation allows you to extract values from HTTP cookies set by the client
 @javax.ws.rs.core.Context
 This class is the all-purpose injection annotation. It allows you to inject various
 helper and informational objects that are provided by the JAX-RS API.
+---------------------------------------------------------------------------------
+Servers can store state information in cookies on the client, and can retrieve that in-
+formation when the client makes its next request. Many web applications use cookies
+to set up a session between the client and the server. They also use cookies to remember
+identity and user preferences between requests. These cookie values are transmitted
+back and forth between the client and server via cookie headers.
+----------------------------------------------------------------------------------
+Automatic Conversion
+JAX-RS can convert this string data into any Java type that you want, provided that it
+matches one of the following criteria:
+1. It is a primitive type. The  int ,  short ,  float ,  double ,  byte ,  char , and  boolean types
+all fit into this category.
+2. It is a Java class that has a constructor with a single  String parameter.
+3. It is a Java class that has a static method named  valueOf() that takes a single
+String argument and returns an instance of the class.
+4. It is  a java.util.List<T> ,  java.util.Set<T> , or  java.util.SortedSet<T> , where  T
+is a type that satisfies criteria 2 or 3 or is a  String . Examples are  List<Double> ,
+Set<String> , or  SortedSet<Integer> .
+----------------------------------------------------------------------------------
+RFC 6570 - URI Template - IETF Tools
+
+Content Management Interoperability Services (CMIS) Version 1.0
+OASIS Standard
+3.6.1 URI Templates
+----------------------------------------------------------------------------------
+Built-in Content Marshalling
+JAX-RS has a bunch of built-in handlers that can marshal to and from a few different
+specific Java types. While most are low-level conversions, they can still be useful to
+your JAX-RS classes
+----------------------------------------------------------------------------------
+@Pretty
+--------------------------------------------------------------------------------
+The  ResponseBuilder class is a factory that is used to create one individual  Response
+instance. You store up state you want to use to create your response and when you’re
+finished, you have the builder instantiate the  Response
+----------------------------------------------------------------------------------
+http://www.iana.org/assignments/link-relations/link-relations.xhtml
+
+Link Headers for HATEOAS
+https://tools.ietf.org/html/draft-nottingham-http-link-header-03
+
+JAX-RS doesn’t have many facilities to help with HATEOAS. HATEOAS is defined by
+the application, so there’s not much a framework can add. What it does have, though,
+are helper classes that you can use to build the URIs that you link to in your data
+formats.
+Building URIs with UriBuilder
+
+UriBuilder nextLinkBuilder = uriInfo.getAbsolutePathBuilder();
+nextLinkBuilder.queryParam("start", 5);
+nextLinkBuilder.queryParam("size", 10);
+URI next = nextLinkBuilder.build();
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
 
 StreamingOutput
 Response
@@ -93,13 +146,13 @@ Order
 XML or JSON.
 Enable HTTPS.
 Enable OAuth 2.
-
+----------------------------------------------------------------------------------
 RELATED LIBRARIES
 HttCommons (Apache Java library for HTTP related functionality. HTTPClient to send requests.)
 javax.ws.rs (Base Java:  A collection of built-in priority constants for the JAX-RS components
 Jackson (Java library to serialize Java objects to JSON and vice versa. )
 Jayway (Company)
-
+------------------------------------------------------------------------------------
 PROGRESSION
 1. Get XML working
 2. Replace strings with string constants from libraries (HTTPHeaders, MediaTypes)
