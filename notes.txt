@@ -130,6 +130,7 @@ nextLinkBuilder.queryParam("start", 5);
 nextLinkBuilder.queryParam("size", 10);
 URI next = nextLinkBuilder.build();
 ----------------------------------------------------------------------------------
+Note that a subresource class like Order often has no root @Path annotations which means that they're delegated to dynamically at runtime, in other words, they can not be invoked upon before one of the root resource classes is invoked first. A root resource class (which has a root @\Path annotation) can become a subresource too if one of its subresource locator methods delegates to it, similar to Order.getItems(productId) above.
 ----------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------
