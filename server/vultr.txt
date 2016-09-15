@@ -1,0 +1,19 @@
+VULTR SERVER INSTANCE
+---------------------
+IP: 104.238.147.53
+USER: root
+
+SHELL
+----
+ssh -i ~/.ssh/id_desertcodecamp root@104.238.147.53
+
+
+COPY
+---
+scp -i ~/.ssh/id_desertcodecamp ~/repos/desert-code-camp/server/target/server-1.0-SNAPSHOT.jar root@104.238.147.53:/root/server
+
+
+TEST
+----
+curl -X GET http://localhost:9000/customerservice/customer/123/
+curl -X GET http://104.238.147.53:9000/customer/123/
