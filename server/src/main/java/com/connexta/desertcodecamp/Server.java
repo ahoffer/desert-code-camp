@@ -30,7 +30,7 @@ public class Server {
     }
 
     public static void main(String args[]) throws Exception {
-        new Server();
+       // new Server();
 
         Thread.sleep(60 * 60 * 1000);
         System.out.println("Server exiting");
