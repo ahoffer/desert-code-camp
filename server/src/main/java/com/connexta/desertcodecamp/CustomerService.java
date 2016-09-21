@@ -28,7 +28,6 @@ import org.springframework.stereotype.Service;
 
 @Path("/customerservice")
 @Service
-//@Produces({"application/xml", "application/json"})
 public interface CustomerService {
 
     @GET
