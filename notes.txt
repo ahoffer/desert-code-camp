@@ -164,6 +164,29 @@ PROGRESSION
 7. Open port 80 on ec2 (or port 9000 or whatever)
 
 
+-------------------------------------------------------------------------------------
+HOW OUR THINKING DEVELOPED
+First idea was to show CXF implementation of JAX-RS
+No Spring. Just embedded Jetty.
+Fell apart when we tried to get SSL/TLS working.
+How do we make something simple enough to only demonstrate CXF and JAX-RS, but rich enough to be interesting?
+Ended up going the Spring Boot route. A lot of stuff is now hidden under the covers, but this approach will get you to working web services faster.
+
+-------------------------------------------------------------------------------------
+PAY ATTENTION TO THE LOGS
+-Challenging to debug annotation-driven development.
+-Look for things like:
+    Tomcat initialized with port(s): 8080 (http)
+        This tells you what port it is serving up the resources.
+
+    Why doesn't https://localhost:8080/customerservice/hello work?
+    Look at the log:
+        Mapping servlet: 'CXFServlet' to [/services/*]
+    You need to add /services to the head of the path
+
+-------------------------------------------------------------------------------------
+
+
 VULTR SERVER INSTANCE
 IP: 104.238.147.53
 USER: root
