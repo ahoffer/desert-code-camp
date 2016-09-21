@@ -34,11 +34,11 @@ public interface CustomerService {
     @GET
     @Path("/hello")
     @Produces(MediaType.TEXT_PLAIN)
-    public String hello();
+    String hello();
 
     @GET
     @Path("/customer/{id}/")
-    public Customer getCustomer(@PathParam("id") String id);
+    Customer getCustomer(@PathParam("id") String id);
 
     //    @PUT
     //    @Path("/customers/")
