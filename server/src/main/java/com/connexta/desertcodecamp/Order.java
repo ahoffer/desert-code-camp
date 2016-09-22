@@ -22,24 +22,18 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.HashMap;
-import java.util.Map;
 
 @XmlRootElement(name = "Order")
 public class Order {
-    private long id;
+    private String id;
+
     private String description;
-    private Map<Long, Product> products = new HashMap<Long, Product>();
 
-    public Order() {
-        init();
-    }
-
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -55,14 +49,7 @@ public class Order {
     @Path("products/{productId}/")
     public Product getProduct(@PathParam("productId") int productId) {
         System.out.println("----invoking getProduct with id: " + productId);
-        Product p = products.get((long) productId);
-        return p;
+        return Database.getProduct(productId);
     }
 
-    final void init() {
-        Product p = new Product();
-        p.setId(323);
-        p.setDescription("product 323");
-        products.put(p.getId(), p);
-    }
 }

@@ -185,7 +185,10 @@ PAY ATTENTION TO THE LOGS
     You need to add /services to the head of the path
 
 -------------------------------------------------------------------------------------
-
+ Spring Boot lets you configure HTTP or HTTPS in the application.properties, but not both at once.
+ If you want to enable both you will need to configure at least one programmatically.
+ The Spring Boot reference documentation recommends configuring HTTPS in the application.properties
+  since it’s the more complicated than HTTP.
 
 VULTR SERVER INSTANCE
 IP: 104.238.147.53

@@ -19,10 +19,13 @@
 package com.connexta.desertcodecamp;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.springframework.stereotype.Service;
 
@@ -39,36 +42,14 @@ public interface CustomerService {
     @Path("/customer/{id}/")
     Customer getCustomer(@PathParam("id") String id);
 
-    //    @PUT
-    //    @Path("/customers/")
-    //    public Response updateCustomer(Customer customer) {
-    //        System.out.println("----invoking updateCustomer, Customer name is: " + customer.getName());
-    //        Customer c = customers.get(customer.getId());
-    //        Response r;
-    //        if (c != null) {
-    //            customers.put(customer.getId(), customer);
-    //            r = Response.ok()
-    //                    .build();
-    //        } else {
-    //            r = Response.notModified()
-    //                    .build();
-    //        }
-    //
-    //        return r;
-    //    }
-    //
-    //    @POST
-    //    @Path("/customer/")
-    //    public Response addCustomer(Customer customer) {
-    //        System.out.println("----invoking addCustomer, Customer name is: " + customer.getName());
-    //        customer.setId(++currentId);
-    //
-    //        customers.put(customer.getId(), customer);
-    //
-    //        return Response.ok(customer)
-    //                .build();
-    //    }
-    //
+    @PUT
+    @Path("/customer/")
+    public Response putCustomer(Customer customer);
+
+    @POST
+    @Path("/customer/")
+    public Response postCustomer(Customer customer);
+
     //    @DELETE
     //    @Path("/customer/{id}/")
     //    public Response deleteCustomer(@PathParam("id") String id) {
@@ -97,16 +78,5 @@ public interface CustomerService {
     //        return c;
     //    }
     //
-    //    final void init() {
-    //        Customer c = new Customer();
-    //        c.setName("John");
-    //        c.setId(123);
-    //        customers.put(c.getId(), c);
-    //
-    //        Order o = new Order();
-    //        o.setDescription("order 223");
-    //        o.setId(223);
-    //        orders.put(o.getId(), o);
-    //    }
 
 }

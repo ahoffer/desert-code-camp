@@ -33,6 +33,12 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 @SpringBootApplication
 public class SampleRestApplication {
+
+    /*   The Bus is the backbone of the CXF architecture. It manages extensions and acts as an interceptor provider.
+      The interceptors for the bus will be added to the respective inbound and outbound message and
+      fault interceptor chains for all client and server endpoints created on the bus (in its context).
+      By default, it contributes no interceptors to either of these interceptor chain types,
+      but they can be added via configuration files or with Java code, as shown below.*/
     @Autowired
     private Bus bus;
 
