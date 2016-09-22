@@ -200,3 +200,7 @@ ssh -i ~/.ssh/id_desertcodecamp root@104.238.147.53
 
 curl -X GET http://localhost:9000/customerservice/customer/123/
 curl -X GET http://104.238.147.53:9000/customer/123/
+
+
+-------------------------------------------------------------------------------------
+keytool -genkey -alias tomcat -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650

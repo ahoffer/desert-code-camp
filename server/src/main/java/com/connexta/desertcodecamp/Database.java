@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class Database {
 
+
     static Map<String, Customer> customers = new HashMap<>();
 
     static Map<String, Order> orders = new HashMap<>();
@@ -14,6 +15,14 @@ public class Database {
     static Map<Class<?>, Long> idMap = new HashMap<>();
 
     static {
+    }
+
+    public static void restore() {
+
+        customers = new HashMap<>();
+        orders = new HashMap<>();
+        products = new HashMap<>();
+        idMap = new HashMap<>();
 
         Customer c = new Customer();
         c.setName("John");
@@ -40,7 +49,13 @@ public class Database {
         return customers.get(id);
     }
 
-    public static Product getProduct(int id) {
+    public static Customer deleteCustomer(String id) {
+        Customer customer = customers.get(id);
+        customers.remove(id);
+        return customer;
+    }
+
+    public static Product getProduct(String id) {
         return products.get(id);
     }
 
@@ -51,13 +66,15 @@ public class Database {
         return String.valueOf(nextId);
     }
 
-    public static Customer post(Customer customer) {
-
+    public static String post(Customer customer) {
         customer.setId(Database.getNextId(Customer.class));
         customers.put(customer.getId(), customer);
-        return customer;
+        return customer.getId();
 
     }
 
+    public static Order getOrder(String id) {
+        return orders.get(id);
+    }
 }
 
