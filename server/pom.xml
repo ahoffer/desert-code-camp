@@ -4,29 +4,17 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.connexta.desertcodecamp</groupId>
     <artifactId>server</artifactId>
     <version>1.0-SNAPSHOT</version>
-
     <name>Desert Code REST Application</name>
     <description>Example REST web services with Apache CXF</description>
-
+    <packaging>jar</packaging>
     <properties>
         <cxf.version>3.1.7</cxf.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-
-
-    <!--<repositories>-->
-    <!--<repository>-->
-    <!--<id>apache-snapshots</id>-->
-    <!--<name>Apache Foundation Snapshots</name>-->
-    <!--<url>http://repository.apache.org/snapshots/</url>-->
-    <!--</repository>-->
-    <!--</repositories>-->
-
     <dependencies>
         <dependency>
             <groupId>org.apache.cxf</groupId>
@@ -44,13 +32,12 @@
             <version>${cxf.version}</version>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>1.4.0.RELEASE</version>
+                <version>1.4.1.RELEASE</version>
                 <configuration>
                     <mainClass>com.connexta.desertcodecamp.SampleRestApplication</mainClass>
                 </configuration>
@@ -64,21 +51,4 @@
             </plugin>
         </plugins>
     </build>
-    <profiles>
-        <profile>
-            <id>server</id>
-            <build>
-                <defaultGoal>spring-boot:run</defaultGoal>
-                <plugins>
-                    <plugin>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-maven-plugin</artifactId>
-                        <configuration>
-                            <mainClass>com.connexta.desertcodecamp.SampleRestApplication</mainClass>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>
