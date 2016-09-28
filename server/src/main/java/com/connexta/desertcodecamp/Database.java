@@ -5,7 +5,6 @@ import java.util.Map;
 
 public class Database {
 
-
     static Map<String, Customer> customers = new HashMap<>();
 
     static Map<String, Order> orders = new HashMap<>();

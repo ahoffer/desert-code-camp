@@ -23,6 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "Customer")
 public class Customer {
     private String id;
+
     private String name;
 
     public String getId() {
