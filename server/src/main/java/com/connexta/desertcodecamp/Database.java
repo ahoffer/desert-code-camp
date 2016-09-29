@@ -25,16 +25,16 @@ public class Database {
 
         Customer c = new Customer();
         c.setName("John");
-        c.setId("1");
+        c.setId(getNextId(Customer.class));
         customers.put(c.getId(), c);
 
         Order o = new Order();
         o.setDescription("code camp order");
-        o.setId("1");
+        o.setId(getNextId(Order.class));
         orders.put(o.getId(), o);
 
         Product p = new Product();
-        p.setId("1");
+        p.setId(getNextId(Product.class));
         p.setDescription("Prince Albert in a tin");
         products.put(p.getId(), p);
     }
@@ -60,6 +60,9 @@ public class Database {
 
     static String getNextId(Class<?> clazz) {
         Long nextId = idMap.get(clazz);
+        if (nextId == null) {
+            nextId = 0L;
+        }
         nextId += 1;
         idMap.put(clazz, nextId);
         return String.valueOf(nextId);

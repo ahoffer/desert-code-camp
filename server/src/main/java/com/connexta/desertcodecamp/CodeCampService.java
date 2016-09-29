@@ -12,11 +12,13 @@ import javax.ws.rs.core.Response;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Path("/codecamp")
 @Service
 public interface CodeCampService {
 
-    //region "Hellow World" with annotations
+    //region "Hello World" with annotations
     @GET
     @Path("/hello")
     @Produces(MediaType.TEXT_PLAIN)
@@ -36,7 +38,7 @@ public interface CodeCampService {
 
     @POST
     @Path("/customer/")
-    public Response postCustomer(Customer customer);
+    public Map<String, String> postCustomer(Customer customer);
 
     @DELETE
     @Path("/customer/{id}/")

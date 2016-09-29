@@ -2,7 +2,11 @@ package com.connexta.desertcodecamp;
 
 import javax.ws.rs.core.Response;
 
+import com.google.common.collect.Maps;
 import io.swagger.annotations.Api;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Api("/codecamp")
 public class CodeCampServiceDefault implements CodeCampService {
@@ -38,12 +42,15 @@ public class CodeCampServiceDefault implements CodeCampService {
     //endregion
 
     //region Implement post customer
-    public Response postCustomer(Customer customer) {
+    public Map<String, String> postCustomer(Customer customer) {
         System.out.println("----invoking postCustomer, Customer name is: " + customer.getName());
 
         //Return the customer ID. Assume database process to create new customer is asynchronous.
-        return Response.ok(Database.post(customer))
-                .build();
+        String newCustomerId = Database.post(customer);
+        Map<String, String> jsonObject = new HashMap();
+        jsonObject.put("id", newCustomerId);
+        jsonObject.put("resource", "http://blah");
+        return jsonObject;
     }
     //endregion
 
