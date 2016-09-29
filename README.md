@@ -99,6 +99,24 @@
   - Jackson to convert between Java objects and JSON
   
 ---  
+
+ ## Demo Progression (speakers notes)
+1. Getting started
+   1. Create a new project in IntelliJ (Travis: Maybe we just have some skeleton in Github that we clone down?)
+   1. Copy in the POM file contents
+   1. Try building the project. Look at log output for port #
+1. "Hello World" 
+   1. Create the CodeCamp service interface with "hello world method"
+   1. Create an implementation of the interface
+   1. Create the application and application configuration classes
+   1. Run it. Look at log output for CXF Servlet path
+   1. Test it with Postman
+1. Get rolling with RESTful resources
+   1. Add Customer, Product, Order, and Database classes
+   1. Add GET methods to service interface and implementation for Customer
+   1. Modify application properties for /services path
+---
+
   
  ## Things about CXF we left out
  - CXF Interceptors (reading and writing), Filters
