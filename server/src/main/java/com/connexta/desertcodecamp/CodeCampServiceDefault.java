@@ -1,12 +1,15 @@
 package com.connexta.desertcodecamp;
 
-import javax.ws.rs.core.Response;
-
-import com.google.common.collect.Maps;
-import io.swagger.annotations.Api;
-
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.ws.rs.core.Link;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.UriInfo;
+
+import io.swagger.annotations.Api;
 
 @Api("/codecamp")
 public class CodeCampServiceDefault implements CodeCampService {
@@ -50,6 +53,8 @@ public class CodeCampServiceDefault implements CodeCampService {
         Map<String, String> jsonObject = new HashMap();
         jsonObject.put("id", newCustomerId);
         jsonObject.put("resource", "http://blah");
+
+        //TODO: Use a Resopnose.created  to senda 201 status code
         return jsonObject;
     }
     //endregion
@@ -81,13 +86,50 @@ public class CodeCampServiceDefault implements CodeCampService {
     }
     //endregion
 
+    // SIMPLE IMPLEMENTATION
     //region Implement get Order and Product
     public Order getOrder(String id) {
         return Database.getOrder(id);
     }
 
+    @Override
     public Product getProduct(String id) {
         return Database.getProduct(id);
     }
+
+    // HATEOAS IMPLEMENTATION USING LINK HEADERS. SEE RFC 5988.
+    public Response getOrderHateoas(String id, UriInfo uriInfo) {
+
+        Order order = Database.getOrder(id);
+
+        UriBuilder builder = uriInfo.getBaseUriBuilder();
+        builder.path(CodeCampService.class);
+
+        // Create customer link
+        URI customerUri = builder.clone()
+                .path(CodeCampService.class, "getCustomer")
+                .build(order.getCustomer()
+                        .getId());
+
+        // Create prodcut link
+        URI productUri = builder.clone()
+                .path(CodeCampService.class, "getProduct")
+                .build(order.getProduct()
+                        .getId());
+
+        //Create fictitious cancel link
+        Link cancelLink = Link.fromUri(uriInfo.getAbsolutePathBuilder()
+                .path("cancel")
+                .build())
+                .rel("cancel")
+                .build();
+
+        return Response.ok(order)
+                .link(productUri, "product")
+                .link(customerUri, "customer")
+                .links(cancelLink)
+                .build();
+    }
+
     //endregion
 }

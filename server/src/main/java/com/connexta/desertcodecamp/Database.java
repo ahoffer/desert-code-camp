@@ -24,19 +24,21 @@ public class Database {
         idMap = new HashMap<>();
 
         Customer c = new Customer();
-        c.setName("John");
+        c.setName("John Foo");
         c.setId(getNextId(Customer.class));
         customers.put(c.getId(), c);
-
-        Order o = new Order();
-        o.setDescription("code camp order");
-        o.setId(getNextId(Order.class));
-        orders.put(o.getId(), o);
 
         Product p = new Product();
         p.setId(getNextId(Product.class));
         p.setDescription("Prince Albert in a tin");
         products.put(p.getId(), p);
+
+        Order o = new Order();
+        o.setDescription("code camp order");
+        o.setId(getNextId(Order.class));
+        o.setCustomer(c);
+        o.setProduct(p);
+        orders.put(o.getId(), o);
     }
 
     public static Customer putCustomer(Customer customer) {

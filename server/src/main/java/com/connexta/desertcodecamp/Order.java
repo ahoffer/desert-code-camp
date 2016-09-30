@@ -19,10 +19,20 @@
 package com.connexta.desertcodecamp;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @XmlRootElement(name = "Order")
 public class Order {
+
     private String id;
+
+    @JsonIgnore
+    private Customer customer;
+
+    @JsonIgnore
+    private Product product;
 
     private String description;
 
@@ -42,4 +52,21 @@ public class Order {
         this.description = d;
     }
 
+    @XmlTransient
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    @XmlTransient
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 }

@@ -14,7 +14,7 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 @Configuration
 public class RestApplicationConfiguration {
-    /* he Bus is the backbone of the CXF architecture. It manages extensions and acts as an interceptor provider.
+    /* The Bus is the backbone of the CXF architecture. It manages extensions and acts as an interceptor provider.
       The interceptors for the bus will be added to the respective inbound and outbound message and
       fault interceptor chains for all client and server endpoints created on the bus (in its context).
       By default, it contributes no interceptors to either of these interceptor chain types,
