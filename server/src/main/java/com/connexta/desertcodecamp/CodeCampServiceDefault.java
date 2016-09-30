@@ -21,7 +21,7 @@ public class CodeCampServiceDefault implements CodeCampService {
 
     //region implement a "Hellow World" service to test the plumbing
     public String hello() {
-
+        System.out.println("-----invoking Hello World service");
         return "Hello World!";
     }
     //endregion
@@ -54,7 +54,7 @@ public class CodeCampServiceDefault implements CodeCampService {
         jsonObject.put("id", newCustomerId);
         jsonObject.put("resource", "http://blah");
 
-        //TODO: Use a Resopnose.created  to senda 201 status code
+        //TODO: Use a Response.created to send a 201 status code
         return jsonObject;
     }
     //endregion
@@ -63,16 +63,7 @@ public class CodeCampServiceDefault implements CodeCampService {
     public Response putCustomer(Customer customer) {
         System.out.println("----invoking putCustomer, Customer name is: " + customer.getName());
         Customer updatedCustomer = Database.putCustomer(customer);
-        Response response;
-        if (updatedCustomer != null) {
-            response = Response.ok()
-                    .build();
-        } else {
-            response = Response.notModified()
-                    .build();
-        }
-
-        return response;
+        return Response.ok().build();
     }
     //endregion
 
@@ -111,7 +102,7 @@ public class CodeCampServiceDefault implements CodeCampService {
                 .build(order.getCustomer()
                         .getId());
 
-        // Create prodcut link
+        // Create product link
         URI productUri = builder.clone()
                 .path(CodeCampService.class, "getProduct")
                 .build(order.getProduct()
