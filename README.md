@@ -99,13 +99,16 @@
 ---  
 
 ## Demo Progression (speakers notes)
+
 #### Getting started
    1. Create a new project in IntelliJ (Travis: Maybe we just have some skeleton in Github that we clone down?)
    1. Copy in the POM file contents
    1. Try building the project. Look at log output for port #
    
 ---
+
 ## Demo Progression (speakers notes)  
+
 ####  "Hello World" 
    1. Create the CodeCamp service interface with "hello world method"
    1. Create an implementation of the interface
@@ -125,7 +128,9 @@
    1. Change Accepts header to switch between XML and JSON
  
 ---
+
 ## Demo Progression (speakers notes)  
+
 ####  HTTP Verbs
    1. Add POST, PUT, DELETE for customer
    1. Demonstrate POST
@@ -133,7 +138,9 @@
    1. Demonstrate DELETE
 
 ----
+
 ## Demo Progression (speakers notes)  
+
 ####  HATEAOS
    1. Add getOrderHateoas resource
    1. Add link headers for customer and product
