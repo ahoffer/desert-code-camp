@@ -151,6 +151,7 @@
 ---
   
  ## Things about CXF we left out
+ 
  - CXF Interceptors (reading and writing), Filters
    - Useful for authentication, authorization steps
   - Streaming input and output
