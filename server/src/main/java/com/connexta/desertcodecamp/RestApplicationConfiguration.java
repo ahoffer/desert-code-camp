@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
+
 //Spring annotation is equivalent of XML's <beans/> element. Like <beans/> and it provides an
 // opportunity to explicitly set defaults for all enclosed bean definitions.
 @Configuration
@@ -42,6 +44,16 @@ public class RestApplicationConfiguration {
         // Install Swagger to get API documentation
         // The URL http://localhost:8080 will provide a link to the Swagger page
         endpoint.setFeatures(asList(new Swagger2Feature()));
+
+        /**
+         *
+         * RESTful resources can be represented many ways. XML and JSON are both population
+         * representations. CXF comes with JAXB at the ready for XML serialization of
+         * Java objects. We add a new entity provider that will serialize Java objects
+         * as JSON.
+         *
+         */
+        endpoint.setProvider(new JacksonJsonProvider());
 
         //Finally, create the actual server from the server factory.
         return endpoint.create();

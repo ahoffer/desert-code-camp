@@ -1,5 +1,10 @@
 package com.connexta.desertcodecamp;
 
+import java.net.URI;
+
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
+
 import io.swagger.annotations.Api;
 
 // Annotation tells Swagger this class implements services
@@ -12,4 +17,75 @@ public class CodeCampServiceDefault implements CodeCampService {
         return "Hello World!";
     }
 
+    //region Implement get Customer
+    public Customer getCustomer(String id) {
+        System.out.println("----invoking getCustomer, Customer id is: " + id);
+        return Database.getCustomer(id);
+        // Throw "resource not found exception" if ID is not in the database
+            /*
+            Customer customer = Database.getCustomer(id);
+                if (customer == null) {
+                    throw new NotFoundException("Cannot find customer id " + id);
+                }
+                return customer;
+            */
+        //endregion
+
+    }
+    //endregion
+
+    //region Implement post Customer
+    public Response postCustomer(Customer customer, UriInfo uriInfo) {
+        System.out.println("----invoking postCustomer, Customer name is: " + customer.getName());
+
+        //Return the customer ID. Assume database process to create new customer is asynchronous.
+        String newCustomerId = Database.post(customer);
+
+        /**
+         * The UriBuilder class is part of JAX-RS. It helps you build URI paths. It seems kind
+         * of clumsy, but maybe there is a better way to use it. In this example, we get the
+         * path to the customer resource "customer/", and append the new customer ID.
+         *
+         * Send back status code 201 to indicate we accepted the POST request.
+         * Also pass back the URL of the resource we will create.
+         */
+
+        URI customerUri = uriInfo.getAbsolutePathBuilder()
+                .path(newCustomerId)
+                .build();
+        return Response.created(customerUri)
+                .build();
+
+    }
+    //endregion
+
+    //region Implement put Customer
+    public Response putCustomer(Customer customer) {
+        System.out.println("----invoking putCustomer, Customer name is: " + customer.getName());
+        Customer updatedCustomer = Database.putCustomer(customer);
+        return Response.ok()
+                .build();
+    }
+    //endregion
+
+    //region Implement delete Customer
+    public Response deleteCustomer(String id) {
+        System.out.println("----invoking deleteCustomer, Customer id is: " + id);
+        Customer customer = Database.deleteCustomer(id);
+        Response.ResponseBuilder responseBuilder =
+                (customer != null) ? Response.ok() : Response.status(Response.Status.NOT_FOUND);
+        return responseBuilder.build();
+    }
+    //endregion
+
+    //region Implement get Order and Product
+    public Order getOrder(String id) {
+        return Database.getOrder(id);
+    }
+
+    @Override
+    public Product getProduct(String id) {
+        return Database.getProduct(id);
+    }
+    //endregion
 }

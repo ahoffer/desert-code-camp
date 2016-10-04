@@ -34,7 +34,7 @@ public class Database {
         products.put(p.getId(), p);
 
         Order o = new Order();
-        o.setDescription("code camp order");
+        o.setDescription("Code camp order");
         o.setId(getNextId(Order.class));
         o.setCustomer(c);
         o.setProduct(p);
