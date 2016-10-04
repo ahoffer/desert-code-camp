@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-
 @Configuration
 public class RestApplicationConfiguration {
     /* The Bus is the backbone of the CXF architecture. It manages extensions and acts as an interceptor provider.
@@ -25,16 +23,23 @@ public class RestApplicationConfiguration {
 
     @Bean
     public Server codeCampServer() {
+
+        // Create the REST Server. Start by getting a factor.
         JAXRSServerFactoryBean endpoint = new JAXRSServerFactoryBean();
+
         endpoint.setBus(bus);
+
+        // Tell the server who is providing the services
         endpoint.setServiceBeans(asList(new CodeCampServiceDefault()));
+
+        // Set the endpoint. Forget this and get a Null Pointer Exception when you build.
         endpoint.setAddress("/");
-        //region Add swagger
+
+        // Install Swagger to get API documentation
+        // The URL http://localhost:8080 will provide a link to the Swagger page
         endpoint.setFeatures(asList(new Swagger2Feature()));
-        //endregion
-        //region Add JSON
-        endpoint.setProvider(new JacksonJsonProvider());
-        //endregion
+
+        //Finally, create the actual server from the server factory.
         return endpoint.create();
     }
 }
