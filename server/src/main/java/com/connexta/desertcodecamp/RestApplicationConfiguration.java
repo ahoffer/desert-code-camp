@@ -10,9 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+//Spring annotation is equivalent of XML's <beans/> element. Like <beans/> and it provides an
+// opportunity to explicitly set defaults for all enclosed bean definitions.
 @Configuration
+
 public class RestApplicationConfiguration {
-    /* The Bus is the backbone of the CXF architecture. It manages extensions and acts as an interceptor provider.
+    /*
+      The Bus is the backbone of the CXF architecture. It manages extensions and acts as an interceptor provider.
       The interceptors for the bus will be added to the respective inbound and outbound message and
       fault interceptor chains for all client and server endpoints created on the bus (in its context).
       By default, it contributes no interceptors to either of these interceptor chain types,
