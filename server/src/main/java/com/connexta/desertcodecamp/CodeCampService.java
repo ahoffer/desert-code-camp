@@ -29,8 +29,6 @@ import org.springframework.stereotype.Service;
 
 public interface CodeCampService {
 
-    //region "Hello World" with annotations
-
     /**
      * JAX-RS annotations tell CXF additional URI Path information, applicable HTTP verb(s)
      */
@@ -43,8 +41,6 @@ public interface CodeCampService {
      *
      */
     @Produces(MediaType.TEXT_PLAIN)
-
-    //Method to invoke and its return type
     String hello();
 
     /**
