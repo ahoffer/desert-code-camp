@@ -16,14 +16,14 @@ import org.springframework.stereotype.Service;
 
 /**
  * @Path is a JAX-RS annotation. Defines the URL path.
- * See JAX-RS URI Path Templates
+ * See JAX-RS URI Path Templates. The @Path("/") annotations puts the service at the "root" level.
  */
-@Path("/codecamp")
+@Path("/")
 
 /**
  *
  * Spring annotation. Means "mark class as a bean so the component-scanning mechanism of spring
- * can pick it up and pull it into the application context.
+ * can pick it up and pull it into the application context".
  */
 @Service
 
@@ -42,9 +42,7 @@ public interface CodeCampService {
      */
 
     /**
-     *
      * The HTTP verb GET
-     *
      */
     @GET
 
@@ -109,5 +107,9 @@ public interface CodeCampService {
     @GET
     @Path("/product/{id}")
     Product getProduct(@PathParam("id") String id);
+
+    @GET
+    @Path("/hateoas/order/{id}")
+    public Response getOrderWithLinkHeaders(@PathParam("id") String id, @Context UriInfo uriInfo);
 
 }

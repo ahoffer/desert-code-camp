@@ -28,6 +28,10 @@ public class Order {
 
     private String id;
 
+    /**
+     * @JsonIgnore prevents an attribute from being included in the JSON representation of
+     * the resource.
+     */
     @JsonIgnore
     private Customer customer;
 
@@ -52,6 +56,10 @@ public class Order {
         this.description = d;
     }
 
+    /**
+     * @XmlTransient prevents an attribute from being included in the JSON representation of the
+     * resource
+     */
     @XmlTransient
     public Customer getCustomer() {
         return customer;
