@@ -2,6 +2,7 @@ package com.connexta.desertcodecamp;
 
 import java.net.URI;
 
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Link;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
@@ -23,16 +24,12 @@ public class CodeCampServiceDefault implements CodeCampService {
     //region Implement get Customer
     public Customer getCustomer(String id) {
         System.out.println("----invoking getCustomer, Customer id is: " + id);
-        return Database.getCustomer(id);
-        // Throw "resource not found exception" if ID is not in the database
-            /*
-            Customer customer = Database.getCustomer(id);
-                if (customer == null) {
-                    throw new NotFoundException("Cannot find customer id " + id);
-                }
-                return customer;
-            */
-        //endregion
+
+        Customer customer = Database.getCustomer(id);
+        if (customer == null) {
+            throw new NotFoundException("Cannot find customer id " + id);
+        }
+        return customer;
 
     }
     //endregion
