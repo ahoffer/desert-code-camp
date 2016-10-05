@@ -92,6 +92,8 @@ public class CodeCampServiceDefault implements CodeCampService {
     }
     //endregion
 
+    //region Implement Link Headers
+
     /**
      * HATEOAS with Link Headers. See RFC 5988.
      * Include links to the order's product and customer, as well as an example a link to a
