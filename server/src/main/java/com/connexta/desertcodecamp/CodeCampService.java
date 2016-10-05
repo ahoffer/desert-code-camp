@@ -50,14 +50,8 @@ public interface CodeCampService {
     /**
      * Method declarations for GET, PUT, POST, DELETE for the Customer resource
      * GET method declaration for Order and Product resources.
-     *
+     * <p>
      * These methods are the basic RESTful operations
-     */
-
-    /**
-     *
-     * The HTTP verb GET
-     *
      */
     @GET
 
