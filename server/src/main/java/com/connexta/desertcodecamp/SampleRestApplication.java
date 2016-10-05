@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SampleRestApplication {
 
     public static void main(String[] args) {
-        Database.restore();
         SpringApplication.run(SampleRestApplication.class, args);
     }
 }
