@@ -2,9 +2,10 @@ package com.connexta.desertcodecamp;
 
 import io.swagger.annotations.Api;
 
-// Annotation tells Swagger this class implements services
-@Api("/codecamp")
-
+/**
+ * @Api annotation tells Swagger this class implements services and names it.
+ */
+@Api("CODECAMP")
 public class CodeCampServiceDefault implements CodeCampService {
 
     public String hello() {

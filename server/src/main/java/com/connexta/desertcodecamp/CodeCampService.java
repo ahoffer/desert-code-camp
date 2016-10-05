@@ -7,12 +7,17 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.stereotype.Service;
 
-// @Path is a JAX-RS annotation. Defines the URL path.
-// See JAX-RS URI Path Templates
-@Path("/codecamp")
+/**
+ * @Path is a JAX-RS annotation. Defines the URL path.
+ * See JAX-RS URI Path Templates. The @Path("/") annotations puts the service at the "root" level.
+ */
+@Path("/")
 
-// Spring annotation. Means "mark class as a bean so the component-scanning mechanism of spring
-// can pick it up and pull it into the application context.
+/**
+ *
+ * Spring annotation. Means "mark class as a bean so the component-scanning mechanism of spring
+ * can pick it up and pull it into the application context".
+ */
 @Service
 
 public interface CodeCampService {
