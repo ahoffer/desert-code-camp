@@ -46,8 +46,12 @@ public interface CodeCampService {
     /**
      * Method declarations for GET, PUT, POST, DELETE for the Customer resource
      * GET method declaration for Order and Product resources.
-     * <p>
+     *
      * These methods are the basic RESTful operations
+     */
+
+    /**
+     * The HTTP verb GET
      */
     @GET
 
@@ -112,5 +116,9 @@ public interface CodeCampService {
     @GET
     @Path("/product/{id}")
     Product getProduct(@PathParam("id") String id);
+
+    @GET
+    @Path("/hateoas/order/{id}")
+    public Response getOrderWithLinkHeaders(@PathParam("id") String id, @Context UriInfo uriInfo);
 
 }

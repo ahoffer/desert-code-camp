@@ -2,7 +2,9 @@ package com.connexta.desertcodecamp;
 
 import java.net.URI;
 
+import javax.ws.rs.core.Link;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
 import io.swagger.annotations.Api;
@@ -88,5 +90,64 @@ public class CodeCampServiceDefault implements CodeCampService {
     public Product getProduct(String id) {
         return Database.getProduct(id);
     }
+    //endregion
+
+    /**
+     * HATEOAS with Link Headers. See RFC 5988.
+     * Include links to the order's product and customer, as well as an example a link to a
+     * fictitious "cancel" action
+     */
+
+    @Override
+    public Response getOrderWithLinkHeaders(String id, UriInfo uriInfo) {
+        Order order = Database.getOrder(id);
+
+        /**
+         *
+         * The UriBuilder class from JAX-RS again.
+         * The getBaseUriBuilder() returns a builder built on "http://localhost:8080/".
+         *
+         */
+        UriBuilder builder = uriInfo.getBaseUriBuilder();
+
+        //
+        /**
+         * Create customer link. Clone the UriBuilder so it can be used again.
+         * Then add the resource path, "/customer" using the UriBuilder's path() method.
+         * Finally, call build and pass it the ID of the Customer.
+         */
+        URI customerUri = builder.clone()
+                .path(CodeCampService.class, "getCustomer")
+                .build(order.getCustomer()
+                        .getId());
+
+        // Create product link
+        URI productUri = builder.clone()
+                .path(CodeCampService.class, "getProduct")
+                .build(order.getProduct()
+                        .getId());
+
+        /**
+         * Create a Header Link to a fictitious to cancel action.
+         * The "rel" attribute is intended to provide meaning to the link.
+         */
+        Link cancelLink = Link.fromUri(uriInfo.getAbsolutePathBuilder()
+                .path("cancel")
+                .build())
+                .rel("cancel")
+                .build();
+
+        /**
+         * Add the Customer and Product URIs to the response headers.
+         * Add the cancel action Link to the response headers. The string in the second
+         * parameter becomes the "rel" for the link.
+         */
+        return Response.ok(order)
+                .link(productUri, "product")
+                .link(customerUri, "customer")
+                .links(cancelLink)
+                .build();
+    }
+
     //endregion
 }
