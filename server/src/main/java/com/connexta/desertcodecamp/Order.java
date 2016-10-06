@@ -19,9 +19,6 @@
 package com.connexta.desertcodecamp;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @XmlRootElement(name = "Order")
 public class Order {
@@ -32,10 +29,10 @@ public class Order {
      * @JsonIgnore prevents an attribute from being included in the JSON representation of
      * the resource.
      */
-    @JsonIgnore
+    //    @JsonIgnore
     private Customer customer;
 
-    @JsonIgnore
+    //    @JsonIgnore
     private Product product;
 
     private String description;
@@ -60,7 +57,7 @@ public class Order {
      * @XmlTransient prevents an attribute from being included in the JSON representation of the
      * resource
      */
-    @XmlTransient
+    //    @XmlTransient
     public Customer getCustomer() {
         return customer;
     }
@@ -69,7 +66,7 @@ public class Order {
         this.customer = customer;
     }
 
-    @XmlTransient
+    //    @XmlTransient
     public Product getProduct() {
         return product;
     }
