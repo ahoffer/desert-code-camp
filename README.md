@@ -30,14 +30,21 @@
 
 ## What is CXF?
 - Framework for service-oriented applications
-- Supports multiple protocols (styles?) for a service 
-- Supports multiple transports (HTTP, message queues, others)
+- Supports multiple service approaches:
+    - SOAP, REST, POX, and other flavors
+- Supports multiple transports
+     - HTTP, message queues, others
 - Standards driven
-  - JAX-WS 
-  - JAX-RS
-  - Lots of OASIS WS-* standards
- - CXF is part of *Service Mix* 
-   - Suite of Apache software to create an enterprise service bus
+  - JAX-WS, JAX-RS, lots of OASIS WS* standards
+
+---
+  
+## CXF  part of Apache Service Mix 
+ - Suite of software to create an enterprise service bus
+   - Includes ActiveMQ, Camel, CXF, Karaf
+ - Other Code Camp 2016.1 presentations:
+   - *Building Micro-services with OSGi Apache Karaf* (1:00-2:00)
+   - *Using Apache Camel for Enterprise Integration*, (2:15-3:15)
 
 ---
   
