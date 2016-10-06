@@ -16,11 +16,14 @@ scp -i ~/.ssh/id_desertcodecamp ~/repos/desert-code-camp/server/target/server-1.
 START
 ---
 nohup java -jar server-1.0-SNAPSHOT.jar >out.log 2>err.log &
+nohup mvn spring-boot:run  >out.log 2>err.log &
 
 
 TEST
 ----
 http://104.238.147.53:8080/hello
+http://104.238.147.53:8080/api-docs?url=/swagger.json
+
 curl -X GET http://localhost:8080/hello
 curl -X GET http://104.238.147.53:8080/customer/1/
 curl -X GET --header "Accept: application/json" "http://104.238.147.53:8080/customer/1"
