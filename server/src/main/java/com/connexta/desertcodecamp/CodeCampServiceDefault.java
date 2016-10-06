@@ -102,14 +102,11 @@ public class CodeCampServiceDefault implements CodeCampService {
         Order order = Database.getOrder(id);
 
         /**
-         *
          * The UriBuilder class from JAX-RS again.
          * The getBaseUriBuilder() returns a builder built on "http://localhost:8080/".
-         *
          */
         UriBuilder builder = uriInfo.getBaseUriBuilder();
 
-        //
         /**
          * Create customer link. Clone the UriBuilder so it can be used again.
          * Then add the resource path, "/customer" using the UriBuilder's path() method.
