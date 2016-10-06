@@ -13,7 +13,12 @@ COPY
 scp -i ~/.ssh/id_desertcodecamp ~/repos/desert-code-camp/server/target/server-1.0-SNAPSHOT.jar root@104.238.147.53:/root/server
 
 
+START
+---
+nohup java -jar server-1.0-SNAPSHOT.jar >out.log 2>err.log &
+
+
 TEST
 ----
-curl -X GET http://localhost:9000/customerservice/customer/123/
-curl -X GET http://104.238.147.53:9000/customer/123/
+curl -X GET http://localhost:8080/hello
+curl -X GET http://104.238.147.53:9000/customer/1/
