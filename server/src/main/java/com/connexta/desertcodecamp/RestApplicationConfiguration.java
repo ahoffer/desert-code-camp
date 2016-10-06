@@ -42,7 +42,7 @@ public class RestApplicationConfiguration {
         endpoint.setAddress("/");
 
         // Install Swagger to get API documentation
-        // The URL http://localhost:8080 will provide a link to the Swagger page
+        // The URL http://localhost:8080/services will provide a link to the Swagger page
         endpoint.setFeatures(asList(new Swagger2Feature()));
 
         /**
